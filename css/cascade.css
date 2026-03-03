@@ -1,3 +1,7 @@
+
+/* ============================================================
+   1. RESET & VARIABLES
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +18,10 @@
   --red:    #8b2020;
 }
 
+
+/* ============================================================
+   2. BASE / BODY
+   ============================================================ */
 body {
   background-color: var(--dark);
   color: var(--text);
@@ -22,17 +30,22 @@ body {
   line-height: 1.6;
 }
 
-/* NAV */
+
+/* ============================================================
+   3. NAVIGATION
+   ============================================================ */
 nav {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   text-align: center;
-  background: rgba(5,4,2,0.95);
+  background: rgba(5, 4, 2, 0.95);
   padding: 15px;
   border-bottom: 1px solid var(--border);
   z-index: 100;
 }
+
 nav a {
   color: var(--dim);
   font-family: 'Cinzel Decorative', serif;
@@ -41,27 +54,42 @@ nav a {
   font-size: 11px;
   margin: 0 20px;
 }
-nav a:hover { color: var(--gold); }
 
-/* SECTIONS */
+nav a:hover {
+  color: var(--gold);
+}
+
+
+/* ============================================================
+   4. SECTIONS & LAYOUT
+   ============================================================ */
 section {
   min-height: 100vh;
   padding: 100px 20px 50px;
 }
+
 .container {
   max-width: 800px;
   margin: 0 auto;
 }
 
-/* COMMON TEXT */
+p {
+  margin-bottom: 15px;
+}
+
+
+/* ============================================================
+   5. TYPOGRAPHY — Titles, Dividers, Lore Boxes
+   ============================================================ */
 .main-title {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
   font-size: 36px;
   text-align: center;
   letter-spacing: 2px;
-  text-shadow: 0 0 30px rgba(201,168,76,0.6);
+  text-shadow: 0 0 30px rgba(201, 168, 76, 0.6);
 }
+
 .subtitle {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
@@ -69,36 +97,96 @@ section {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .dim-text {
   color: var(--dim);
   font-style: italic;
   text-align: center;
 }
+
 .divider {
   text-align: center;
   color: var(--gold);
   letter-spacing: 5px;
   margin: 5px 0 8px;
 }
+
 .lore-box {
   font-style: italic;
-  padding: 10px;
+  padding: 10px 14px;
   background: var(--panel);
   border-left: 2px solid var(--gold);
   margin: 15px 0;
 }
-p { margin-bottom: 15px; }
 
-/* HOME */
+
+/* ============================================================
+   6. DROP CAPS — Book-style illuminated first letters
+      Applied via class="drop-cap" on first <p> of each section
+   ============================================================ */
+.drop-cap::first-letter {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 5.2em;
+  float: left;
+  line-height: 0.78;
+  /* Right margin creates gutter between letter and text */
+  margin: 0.05em 0.12em 0 0;
+  color: var(--gold);
+  text-shadow:
+    0 0 18px rgba(201, 168, 76, 0.7),
+    0 0 40px rgba(201, 168, 76, 0.25);
+  /* Thin decorative border around the capital */
+  padding: 4px 6px;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  background: rgba(201, 168, 76, 0.04);
+}
+
+
+/* ============================================================
+   7. LORE ILLUSTRATIONS — SVG art between title and paragraph
+   ============================================================ */
+.lore-illustration {
+  width: 100%;
+  margin: 18px 0 20px;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
+  display: block;
+  overflow: hidden;
+  background: #070502;
+}
+
+.lore-illustration svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.lore-illustration figcaption {
+  font-style: italic;
+  font-size: 11px;
+  color: var(--dim);
+  text-align: center;
+  padding: 6px 10px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 1.5px;
+}
+
+
+/* ============================================================
+   8. HOME SECTION
+   ============================================================ */
 #home {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(ellipse at center, rgb(31,20,9), var(--dark) 70%);
+  background: radial-gradient(ellipse at center, rgb(31, 20, 9), var(--dark) 70%);
 }
 
-/* CARD */
+
+/* ============================================================
+   9. CHARACTER CARDS & GRID
+   ============================================================ */
 .card-grid {
   display: flex;
   flex-wrap: wrap;
@@ -106,6 +194,7 @@ p { margin-bottom: 15px; }
   justify-content: center;
   margin: 30px 0;
 }
+
 .char-card {
   width: 150px;
   background: var(--panel);
@@ -114,66 +203,165 @@ p { margin-bottom: 15px; }
   text-align: center;
   cursor: pointer;
 }
+
 .char-card:hover {
   border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(201,168,76,0.2);
+  box-shadow: 0 0 16px rgba(201, 168, 76, 0.2);
 }
+
 .card-avatar {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.card-avatar-init {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 40px;
-  color: var(--gold);
-  text-shadow: 0 0 20px rgba(201,168,76,0.5);
-}
-.avatar-yuan {
-  background: radial-gradient(ellipse at 50% 110%, rgba(201,168,76,0.15), transparent 65%), #0c0a05;
-}
+
 .card-body {
   padding: 10px;
   border-top: 1px solid var(--border);
 }
+
 .card-cname {
   font-family: 'Cinzel Decorative', serif;
   font-size: 9px;
   color: var(--gold);
   margin-bottom: 4px;
 }
+
 .card-csub {
   font-size: 10px;
   color: var(--dim);
   font-style: italic;
   margin-bottom: 10px;
 }
+
 .card-hint {
   font-size: 9px;
   color: var(--dim);
   border-top: 1px solid var(--border);
   padding-top: 7px;
 }
-.char-card:hover .card-hint { color: var(--gold); }
 
-/* POPUP OVERLAY */
+.char-card:hover .card-hint {
+  color: var(--gold);
+}
+
+
+/* ============================================================
+  10. CARD AVATARS — Background tints & Image Styling
+   ============================================================ */
+.avatar-yuan {
+  background: radial-gradient(ellipse at 50% 110%, rgba(201, 168, 76, 0.15), transparent 65%), #0c0a05;
+}
+
+/* Profile image container */
+.profile-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.3) brightness(0.8) contrast(1.1);
+  transition: transform 0.4s ease;
+}
+
+/* Dark radial vignette overlay */
+.profile-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 50%, rgba(8, 6, 2, 0.8) 100%);
+  pointer-events: none;
+}
+
+/* Hover: zoom + restore full color */
+.char-card:hover .profile-img {
+  transform: scale(1.1);
+  filter: sepia(0) brightness(1) contrast(1.1);
+}
+
+
+/* ============================================================
+  11. RANK TABLE
+   ============================================================ */
+.rank-container {
+  margin: 40px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  text-align: left;
+}
+
+.rank-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.rank-table th {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  padding: 15px;
+  border-bottom: 2px solid var(--gold);
+  font-size: 12px;
+  letter-spacing: 1px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.rank-table td {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.rank-letter {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  font-size: 24px;
+  text-align: center;
+  width: 100px;
+  background: rgba(201, 168, 76, 0.03);
+}
+
+.rank-desc strong {
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
+
+
+/* ============================================================
+  12. POPUP OVERLAY
+   ============================================================ */
 .overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(4,2,1,0.92);
+  background: rgba(4, 2, 1, 0.92);
   z-index: 999;
   align-items: center;
   justify-content: center;
   padding: 16px;
 }
+
 .overlay.active {
   display: flex;
 }
 
-/* POPUP PANEL */
+
+/* ============================================================
+  13. PANEL SHELL — Border, scroll, close button
+   ============================================================ */
 .panel {
   width: min(580px, 96vw);
   max-height: 95vh;
@@ -183,19 +371,32 @@ p { margin-bottom: 15px; }
   padding: 30px 24px 24px;
   position: relative;
 }
+
 .close-btn {
   position: absolute;
-  top: 10px; right: 14px;
-  color: var(--dim);
+  top: 10px;
+  right: 14px;
   font-size: 16px;
   cursor: pointer;
   background: none;
   border: none;
   color: var(--dim);
 }
-.close-btn:hover { color: var(--red); }
 
-/* PANEL HEADER */
+.close-btn:hover {
+  color: var(--red);
+}
+
+.panel-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+
+
+/* ============================================================
+  14. PANEL HEADER — Name, Title, Label
+   ============================================================ */
 .panel-label {
   font-size: 9px;
   letter-spacing: 4px;
@@ -203,13 +404,15 @@ p { margin-bottom: 15px; }
   text-align: center;
   margin-bottom: 4px;
 }
+
 .panel-name {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
   font-size: 20px;
   text-align: center;
-  text-shadow: 0 0 12px rgba(201,168,76,0.35);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.35);
 }
+
 .panel-title {
   font-style: italic;
   color: var(--dim);
@@ -217,48 +420,61 @@ p { margin-bottom: 15px; }
   text-align: center;
   margin-bottom: 14px;
 }
-.panel-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 12px 0;
-}
 
-/* INFO ROW */
+
+/* ============================================================
+  15. INFO ROW — Rank / Level / Law / Hunts cells
+   ============================================================ */
 .info-row {
   display: flex;
+  flex-wrap: wrap;       /* wraps naturally on narrow screens */
   justify-content: center;
   margin-bottom: 14px;
 }
+
 .info-cell {
-  flex: 1;
+  flex: 1 1 60px;
+  min-width: 0;          /* allows flex shrinking past content size */
   max-width: 120px;
   text-align: center;
   border-right: 1px solid var(--border);
-  padding: 0 8px;
+  padding: 6px 8px;
 }
-.info-cell:last-child { border-right: none; }
+
+.info-cell:last-child {
+  border-right: none;
+}
+
 .info-label {
   font-size: 8px;
   letter-spacing: 2px;
   color: var(--dim);
   display: block;
+  margin-bottom: 2px;
 }
+
 .info-value {
   font-family: 'Cinzel Decorative', serif;
   font-size: 10px;
   color: var(--gold);
+  word-break: break-word;
 }
+
+/*
+  THE VOW CELL FIX:
+  Previously had min-width:250px (overflow) and border-top (unwanted line).
+  Now: flexible, no fixed min-width, no border-top.
+  The cell stacks naturally on mobile without any rogue borders.
+*/
 .info-cell.vow-cell {
+  flex: 2 1 140px;       /* grows more, starts wider than siblings */
   max-width: none;
-  flex: 2;   
-  min-width: 250px;
+  min-width: 0;          /* ← was 250px — this was the overflow culprit */
+  border-right: none;
+  /* NO border-top — that was causing the unwanted line */
 }
 
-.vow-cell .info-label {
-  display: block;
-}
-
-/* SECTION TITLE */
+/* Panel sub-section titles */
 .sec-title {
   font-size: 9px;
   letter-spacing: 4px;
@@ -267,7 +483,10 @@ p { margin-bottom: 15px; }
   margin: 14px 0 8px;
 }
 
-/* STAT BARS */
+
+/* ============================================================
+  16. STAT BARS
+   ============================================================ */
 .stat-row {
   display: grid;
   grid-template-columns: 100px 1fr 30px;
@@ -275,53 +494,61 @@ p { margin-bottom: 15px; }
   gap: 10px;
   margin-bottom: 7px;
 }
+
 .stat-label {
   font-size: 9px;
   letter-spacing: 1.5px;
   color: var(--dim);
   text-align: right;
 }
+
 .stat-bar-bg {
   height: 5px;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
 }
+
 .stat-bar-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--dim), var(--gold));
 }
+
 .stat-num {
   font-size: 10px;
   color: var(--gold);
   font-family: 'Cinzel Decorative', serif;
 }
 
-/* ABILITIES */
+
+/* ============================================================
+  17. ABILITIES GRID & TOOLTIPS
+   ============================================================ */
 .abilities-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
   margin-top: 8px;
 }
+
 .ability {
   position: relative;
   padding: 8px 5px;
   border: 1px solid var(--border);
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   font-size: 10px;
   text-align: center;
   cursor: default;
 }
+
 .ability:hover {
   border-color: var(--gold);
-  background: rgba(201,168,76,0.05);
+  background: rgba(201, 168, 76, 0.05);
 }
+
 .ability-tooltip {
   display: none;
   position: absolute;
   bottom: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
   width: 190px;
   background: var(--dark);
   border: 1px solid var(--gold);
@@ -334,105 +561,419 @@ p { margin-bottom: 15px; }
   text-align: left;
   pointer-events: none;
 }
-.ability:hover .ability-tooltip { display: block; }
 
-/* CHRONICLE */
-.chronicle-box {
-  margin-top: 14px;
-  padding: 10px 12px;
-  border-left: 1px solid var(--gold);
-  background: rgba(255,255,255,0.02);
-  font-style: italic;
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-/* MOBILE */
-@media (max-width: 540px) {
-  nav a { margin: 0 10px; font-size: 9px; }
-  .abilities-row { grid-template-columns: repeat(2, 1fr); }
-  .stat-row { grid-template-columns: 80px 1fr 26px; }
-}
-
-/* Container to hold the image and the dark shadow */
-.profile-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* The actual photo */
-.profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This prevents the image from stretching */
+.ability:hover .ability-tooltip {
   display: block;
-  filter: sepia(0.3) brightness(0.8) contrast(1.1); /* Atmospheric filter */
-  transition: transform 0.4s ease;
 }
 
-/* Dark gradient overlay to make it look "sunken" into the card */
-.profile-vignette {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: radial-gradient(circle, transparent 50%, rgba(8, 6, 2, 0.8) 100%);
-  pointer-events: none;
-}
-
-/* Slight zoom effect when you hover over the card */
-.char-card:hover .profile-img {
-  transform: scale(1.1);
-  filter: sepia(0) brightness(1) contrast(1.1); /* Returns to color on hover */
-}
-.rank-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-
-}
-.rank-container {
-  margin: 40px 0;
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  text-align: left;
-}
-.rank-table th {
-  font-family: 'Cinzel Decorative', serif;
-  color: var(--gold);
-  padding: 15px;
-  border-bottom: 2px solid var(--gold);
-  font-size: 12px;
-  letter-spacing: 1px;
-  background: rgba(0,0,0,0.3);
-}
-.rank-table td {
-  padding: 20px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  vertical-align: top;
-}
-.rank-letter {
-  font-family: 'Cinzel Decorative', serif;
-  color: var(--gold);
-  font-size: 24px;
-  text-align: center;
-  width: 100px;
-  background: rgba(201,168,76,0.03);
-}
-.rank-desc strong { color: var(--gold); display: block; margin-bottom: 4px; }
-.ability:nth-child(3) .ability-tooltip,
-.ability:nth-child(4) .ability-tooltip {
-  left: auto;
-  right: 0;
-  transform: translateX(0);
-}
+/* Tooltip horizontal anchoring to prevent edge bleed */
 .ability:nth-child(1) .ability-tooltip,
 .ability:nth-child(2) .ability-tooltip {
   left: 0;
   right: auto;
   transform: translateX(0);
 }
+
+.ability:nth-child(3) .ability-tooltip,
+.ability:nth-child(4) .ability-tooltip {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+
+/* ============================================================
+  18. CHRONICLE BOX
+   ============================================================ */
+.chronicle-box {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-left: 1px solid var(--gold);
+  background: rgba(255, 255, 255, 0.02);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+
+/* ============================================================
+  19. FACTION SECTIONS — Three-faction bestiary layout
+   ============================================================ */
+
+/* Each faction gets its own block with a color theme */
+.faction-block {
+  padding: 60px 20px 40px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+/* Faction header banner */
+.faction-header {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.faction-tag {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--dim);
+  margin-bottom: 6px;
+}
+
+/* Faction title — colored per faction */
+.faction-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.faction-title.archive  { color: var(--gold); text-shadow: 0 0 20px rgba(201,168,76,0.4); }
+.faction-title.inq      { color: #a8bfcc;     text-shadow: 0 0 20px rgba(168,191,204,0.4); }
+.faction-title.veilborn { color: #b03030;     text-shadow: 0 0 20px rgba(176,48,48,0.4); }
+
+/* Thin colored line under faction title */
+.faction-line {
+  height: 1px;
+  width: 120px;
+  margin: 0 auto 14px;
+}
+.faction-line.archive  { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.faction-line.inq      { background: linear-gradient(90deg, transparent, #a8bfcc, transparent); }
+.faction-line.veilborn { background: linear-gradient(90deg, transparent, #b03030, transparent); }
+
+/* Faction motto */
+.faction-motto {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+/* Faction card grid */
+.faction-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* The new improved card */
+.bcard {
+  width: 220px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.bcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* Top colored accent bar per faction */
+.bcard.archive  { border-top: 2px solid var(--gold); }
+.bcard.inq      { border-top: 2px solid #a8bfcc; }
+.bcard.veilborn { border-top: 2px solid #b03030; }
+
+/* Card image area */
+.bcard-img {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  background: #0c0a06;
+}
+.bcard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  filter: sepia(0.3) brightness(0.75) contrast(1.1);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.bcard:hover .bcard-img img {
+  transform: scale(1.06);
+  filter: sepia(0) brightness(0.9) contrast(1.1);
+}
+
+/* Gradient fade at bottom of image into card body */
+.bcard-img-fade {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 60%;
+  background: linear-gradient(to top, var(--panel), transparent);
+  pointer-events: none;
+}
+
+/* Small faction rank badge in top-right corner of image */
+.bcard-rank {
+  position: absolute;
+  top: 10px; right: 10px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 11px;
+  padding: 3px 8px;
+  border: 1px solid;
+  background: rgba(8,6,2,0.8);
+}
+.bcard.archive  .bcard-rank { color: var(--gold); border-color: var(--gold); }
+.bcard.inq      .bcard-rank { color: #a8bfcc;     border-color: #a8bfcc; }
+.bcard.veilborn .bcard-rank { color: #b03030;     border-color: #b03030; }
+
+/* Card text body */
+.bcard-body {
+  padding: 14px 14px 16px;
+  border-top: 1px solid var(--border);
+}
+.bcard-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.bcard.inq      .bcard-name { color: #a8bfcc; }
+.bcard.veilborn .bcard-name { color: #b03030; }
+
+.bcard-title {
+  font-style: italic;
+  font-size: 11px;
+  color: var(--dim);
+  margin-bottom: 10px;
+}
+
+/* Short flavor text on card */
+.bcard-flavor {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+/* "Open Record" button at bottom */
+.bcard-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--dim);
+  border: 1px solid var(--border);
+  padding: 7px 0;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.bcard:hover .bcard-btn {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.05);
+}
+.bcard.inq:hover .bcard-btn {
+  border-color: #a8bfcc;
+  color: #a8bfcc;
+  background: rgba(168,191,204,0.05);
+}
+.bcard.veilborn:hover .bcard-btn {
+  border-color: #b03030;
+  color: #b03030;
+  background: rgba(176,48,48,0.05);
+}
+
+/* Background tint per faction block */
+.faction-block.archive-bg  { background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.04), transparent 60%); }
+.faction-block.inq-bg      { background: radial-gradient(ellipse at 50% 0%, rgba(168,191,204,0.04), transparent 60%); }
+.faction-block.veilborn-bg { background: radial-gradient(ellipse at 50% 0%, rgba(176,48,48,0.05), transparent 60%); }
+
+
+/* ============================================================
+  20. MOBILE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 540px) {
+
+  /* Nav links tighter */
+  nav a {
+    margin: 0 10px;
+    font-size: 9px;
+  }
+
+  /* Abilities: 2×2 grid */
+  .abilities-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Stat bar label narrower */
+  .stat-row {
+    grid-template-columns: 80px 1fr 26px;
+  }
+
+  /*
+    INFO ROW — full column stack on small screens.
+    Each cell gets a bottom border; right borders are removed.
+    The vow cell resets to a normal full-width row item.
+  */
+  .info-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .info-cell {
+    max-width: 100%;
+    
+    border-bottom: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .info-cell:last-child {
+    border-bottom: none;
+  }
+
+  /* Vow cell: behaves like any other stacked cell */
+  .info-cell.vow-cell {
+    flex: none;
+    width: 100%;
+    
+  }
+
+  /* Faction cards: slightly narrower on small screens */
+  .bcard {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+/* ============================================================
+       ADDITIONAL FACTION-THEMED PANEL STYLES
+       ============================================================ */
+    /* Yuan — Archive (Gold) */
+    #status-yuan .panel {
+      border-color: #c9a84c;
+    }
+    #status-yuan .panel-name,
+    #status-yuan .info-value,
+    #status-yuan .stat-num,
+    #status-yuan .bcard-rank {
+      color: #c9a84c;
+    }
+    #status-yuan .ability:hover {
+      border-color: #c9a84c;
+      background: rgba(201,168,76,0.08);
+    }
+    #status-yuan .close-btn:hover { color: #c9a84c; }
+
+    /* Sean — Inquisition (Silver-Blue) */
+    #status-sean .panel {
+      border-color: #a8bfcc;
+    }
+    #status-sean .panel-name,
+    #status-sean .info-value,
+    #status-sean .stat-num,
+    #status-sean .bcard-rank {
+      color: #a8bfcc;
+    }
+    #status-sean .ability:hover {
+      border-color: #a8bfcc;
+      background: rgba(168,191,204,0.08);
+    }
+    #status-sean .close-btn:hover { color: #a8bfcc; }
+
+    /* Xyron — Veilborn (Dark Red) */
+    #status-xyron .panel {
+      border-color: #b03030;
+    }
+    #status-xyron .panel-name,
+    #status-xyron .info-value,
+    #status-xyron .stat-num,
+    #status-xyron .bcard-rank {
+      color: #b03030;
+    }
+    #status-xyron .ability:hover {
+      border-color: #b03030;
+      background: rgba(176,48,48,0.08);
+    }
+    #status-xyron .close-btn:hover { color: #b03030; }
+    .info-cell.vow-cell {
+  border-right: 1px solid var(--border) !important; /* ensures the | line always appears */
+}
+/* ============================================================
+       ADDITIONAL FACTION-THEMED PANEL STYLES + STAT BARS + BORDERS
+       ============================================================ */
+
+/* Yuan — Archive (Gold) */
+#status-yuan .panel {
+  border-color: #c9a84c;
+}
+#status-yuan .panel-name,
+#status-yuan .info-value,
+#status-yuan .stat-num,
+#status-yuan .bcard-rank {
+  color: #c9a84c;
+}
+#status-yuan .ability:hover {
+  border-color: #c9a84c;
+  background: rgba(201,168,76,0.08);
+}
+#status-yuan .close-btn:hover { color: #c9a84c; }
+
+/* Sean — Inquisition (Silver-Blue) */
+#status-sean .panel {
+  border-color: #a8bfcc;
+}
+#status-sean .panel-name,
+#status-sean .info-value,
+#status-sean .stat-num,
+#status-sean .bcard-rank {
+  color: #a8bfcc;
+}
+#status-sean .ability:hover {
+  border-color: #a8bfcc;
+  background: rgba(168,191,204,0.08);
+}
+#status-sean .close-btn:hover { color: #a8bfcc; }
+
+/* Xyron — Veilborn (Dark Red) */
+#status-xyron .panel {
+  border-color: #b03030;
+}
+#status-xyron .panel-name,
+#status-xyron .info-value,
+#status-xyron .stat-num,
+#status-xyron .bcard-rank {
+  color: #b03030;
+}
+#status-xyron .ability:hover {
+  border-color: #b03030;
+  background: rgba(176,48,48,0.08);
+}
+#status-xyron .close-btn:hover { color: #b03030; }
+
+/* ============================================================
+   FACTION-THEMED STAT BAR FILLS (exactly what you asked for)
+   ============================================================ */
+#status-yuan .stat-bar-fill {
+  background: linear-gradient(90deg, #6a5a40, #c9a84c);
+}
+#status-sean .stat-bar-fill {
+  background: linear-gradient(90deg, #6a5a40, #a8bfcc);
+}
+#status-xyron .stat-bar-fill {
+  background: linear-gradient(90deg, #6a5a40, #b03030);
+}
+
+/* Stronger faction-colored borders everywhere */
+.info-cell {
+  border-right: 1px solid var(--border);
+}
+#status-yuan .info-cell { border-right-color: #c9a84c; }
+#status-sean .info-cell { border-right-color: #a8bfcc; }
+#status-xyron .info-cell { border-right-color: #b03030; }
+
+.info-cell.vow-cell {
+  border-right: 1px solid var(--border) !important; /* vertical | line always visible */
+}
+#status-yuan .info-cell.vow-cell { border-right-color: #c9a84c !important; }
+#status-sean .info-cell.vow-cell { border-right-color: #a8bfcc !important; }
+#status-xyron .info-cell.vow-cell { border-right-color: #b03030 !important; }
