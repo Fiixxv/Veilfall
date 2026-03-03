@@ -176,7 +176,7 @@ p { margin-bottom: 15px; }
 /* POPUP PANEL */
 .panel {
   width: min(580px, 96vw);
-  max-height: 90vh;
+  max-height: 95vh;
   overflow-y: auto;
   background: var(--panel);
   border: 1px solid var(--gold);
@@ -245,8 +245,17 @@ p { margin-bottom: 15px; }
 }
 .info-value {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--gold);
+}
+.info-cell.vow-cell {
+  max-width: none;
+  flex: 2;   
+  min-width: 250px;
+}
+
+.vow-cell .info-label {
+  display: block;
 }
 
 /* SECTION TITLE */
@@ -316,8 +325,8 @@ p { margin-bottom: 15px; }
   width: 190px;
   background: var(--dark);
   border: 1px solid var(--gold);
-  padding: 8px 10px;
-  font-size: 11px;
+  padding: 12px 16px;
+  font-size: 13px;
   font-style: italic;
   color: var(--text);
   line-height: 1.5;
@@ -377,4 +386,53 @@ p { margin-bottom: 15px; }
 .char-card:hover .profile-img {
   transform: scale(1.1);
   filter: sepia(0) brightness(1) contrast(1.1); /* Returns to color on hover */
+}
+.rank-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+}
+.rank-container {
+  margin: 40px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  text-align: left;
+}
+.rank-table th {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  padding: 15px;
+  border-bottom: 2px solid var(--gold);
+  font-size: 12px;
+  letter-spacing: 1px;
+  background: rgba(0,0,0,0.3);
+}
+.rank-table td {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: top;
+}
+.rank-letter {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  font-size: 24px;
+  text-align: center;
+  width: 100px;
+  background: rgba(201,168,76,0.03);
+}
+.rank-desc strong { color: var(--gold); display: block; margin-bottom: 4px; }
+.ability:nth-child(3) .ability-tooltip,
+.ability:nth-child(4) .ability-tooltip {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+.ability:nth-child(1) .ability-tooltip,
+.ability:nth-child(2) .ability-tooltip {
+  left: 0;
+  right: auto;
+  transform: translateX(0);
 }
