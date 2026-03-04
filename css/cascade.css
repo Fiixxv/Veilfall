@@ -1,49 +1,58 @@
-
 /* ============================================================
-   1. RESET & VARIABLES
+   RECORD OF THE VEILFALL — cascade.css
    ============================================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
+/* 1. RESET & VARIABLES */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --gold:   #c9a84c;
-  --dark:   #080602;
-  --panel:  #100d07;
-  --border: #3a2e1a;
-  --text:   #d4c5a0;
-  --dim:    #6a5a40;
-  --red:    #8b2020;
+  --gold:    #c9a84c;
+  --dark:    #080602;
+  --panel:   #0f0c07;
+  --border:  #3a2e1a;
+  --text:    #d4c5a0;
+  --dim:     #6a5a40;
+  --red:     #8b2020;
+  --archive: #c9a84c;
+  --inq:     #a8bfcc;
+  --veil:    #b03030;
 }
 
+/* 2. BASE */
+html { scroll-behavior: smooth; }
 
-/* ============================================================
-   2. BASE / BODY
-   ============================================================ */
 body {
   background-color: var(--dark);
   color: var(--text);
   font-family: 'Crimson Text', serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.75;
+  /* Grain overlay */
+  position: relative;
 }
 
+/* Subtle grain texture over everything */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
 
-/* ============================================================
-   3. NAVIGATION
-   ============================================================ */
+/* 3. NAVIGATION */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 0; left: 0; width: 100%;
   text-align: center;
-  background: rgba(5, 4, 2, 0.95);
-  padding: 15px;
+  background: rgba(4, 3, 1, 0.97);
+  padding: 14px 20px;
   border-bottom: 1px solid var(--border);
-  z-index: 100;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
 }
 
 nav a {
@@ -51,929 +60,781 @@ nav a {
   font-family: 'Cinzel Decorative', serif;
   text-decoration: none;
   letter-spacing: 3px;
-  font-size: 11px;
-  margin: 0 20px;
+  font-size: 10px;
+  margin: 0 22px;
+  transition: color 0.3s, letter-spacing 0.3s;
+  position: relative;
 }
 
-nav a:hover {
-  color: var(--gold);
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
 }
 
+nav a:hover { color: var(--gold); letter-spacing: 4px; }
+nav a:hover::after { width: 100%; }
 
-/* ============================================================
-   4. SECTIONS & LAYOUT
-   ============================================================ */
-section {
-  min-height: 100vh;
-  padding: 100px 20px 50px;
-}
+/* 4. SECTIONS & LAYOUT */
+section { min-height: 100vh; padding: 110px 24px 60px; }
+.container { max-width: 820px; margin: 0 auto; }
+p { margin-bottom: 16px; }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-p {
-  margin-bottom: 15px;
-}
-
-
-/* ============================================================
-   5. TYPOGRAPHY — Titles, Dividers, Lore Boxes
-   ============================================================ */
+/* 5. TYPOGRAPHY */
 .main-title {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
-  font-size: 36px;
+  font-size: 38px;
   text-align: center;
-  letter-spacing: 2px;
-  text-shadow: 0 0 30px rgba(201, 168, 76, 0.6);
+  letter-spacing: 3px;
+  text-shadow: 0 0 40px rgba(201,168,76,0.55), 0 0 80px rgba(201,168,76,0.2);
+  margin-bottom: 4px;
 }
 
 .subtitle {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
-  margin-bottom: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  text-shadow: 0 0 20px rgba(201,168,76,0.3);
 }
 
-.dim-text {
-  color: var(--dim);
-  font-style: italic;
-  text-align: center;
-}
-
-.divider {
-  text-align: center;
-  color: var(--gold);
-  letter-spacing: 5px;
-  margin: 5px 0 8px;
-}
+.dim-text  { color: var(--dim); font-style: italic; text-align: center; font-size: 14px; letter-spacing: 1px; }
+.divider   { text-align: center; color: var(--gold); letter-spacing: 6px; margin: 6px 0 10px; opacity: 0.8; }
 
 .lore-box {
   font-style: italic;
-  padding: 10px 14px;
-  background: var(--panel);
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.04), rgba(201,168,76,0.01));
   border-left: 2px solid var(--gold);
-  margin: 15px 0;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  margin: 18px 0;
+  position: relative;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text);
 }
 
+.lore-box::before {
+  content: '"';
+  position: absolute;
+  top: -6px; left: 12px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+}
 
-/* ============================================================
-   6. DROP CAPS — Book-style illuminated first letters
-      Applied via class="drop-cap" on first <p> of each section
-   ============================================================ */
+/* 6. DROP CAPS */
 .drop-cap::first-letter {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 5.2em;
+  font-size: 5em;
   float: left;
   line-height: 0.78;
-  /* Right margin creates gutter between letter and text */
-  margin: 0.05em 0.12em 0 0;
+  margin: 0.05em 0.14em 0 0;
   color: var(--gold);
-  text-shadow:
-    0 0 18px rgba(201, 168, 76, 0.7),
-    0 0 40px rgba(201, 168, 76, 0.25);
-  /* Thin decorative border around the capital */
-  padding: 4px 6px;
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  background: rgba(201, 168, 76, 0.04);
+  text-shadow: 0 0 20px rgba(201,168,76,0.65), 0 0 45px rgba(201,168,76,0.2);
+  padding: 5px 8px;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.04);
 }
 
-
-/* ============================================================
-   7. LORE ILLUSTRATIONS — SVG art between title and paragraph
-   ============================================================ */
+/* 7. LORE ILLUSTRATIONS */
 .lore-illustration {
   width: 100%;
-  margin: 18px 0 20px;
+  margin: 20px 0 22px;
   border: 1px solid var(--border);
   border-top: 2px solid var(--gold);
   display: block;
   overflow: hidden;
-  background: #070502;
+  background: #060401;
+  position: relative;
 }
 
-.lore-illustration svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+.lore-illustration svg  { width: 100%; height: auto; display: block; }
 
 .lore-illustration figcaption {
   font-style: italic;
   font-size: 11px;
   color: var(--dim);
   text-align: center;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border-top: 1px solid var(--border);
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
+  background: rgba(0,0,0,0.3);
 }
 
-
-/* ============================================================
-   8. HOME SECTION
-   ============================================================ */
+/* 8. HOME SECTION */
 #home {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(ellipse at center, rgb(31, 20, 9), var(--dark) 70%);
-}
-
-
-/* ============================================================
-   9. CHARACTER CARDS & GRID
-   ============================================================ */
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin: 30px 0;
-}
-
-.char-card {
-  width: 150px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--gold);
-  text-align: center;
-  cursor: pointer;
-}
-
-.char-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(201, 168, 76, 0.2);
-}
-
-.card-avatar {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-body {
-  padding: 10px;
-  border-top: 1px solid var(--border);
-}
-
-.card-cname {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 9px;
-  color: var(--gold);
-  margin-bottom: 4px;
-}
-
-.card-csub {
-  font-size: 10px;
-  color: var(--dim);
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-.card-hint {
-  font-size: 9px;
-  color: var(--dim);
-  border-top: 1px solid var(--border);
-  padding-top: 7px;
-}
-
-.char-card:hover .card-hint {
-  color: var(--gold);
-}
-
-
-/* ============================================================
-  10. CARD AVATARS — Background tints & Image Styling
-   ============================================================ */
-.avatar-yuan {
-  background: radial-gradient(ellipse at 50% 110%, rgba(201, 168, 76, 0.15), transparent 65%), #0c0a05;
-}
-
-/* Profile image container */
-.profile-container {
+  background:
+    radial-gradient(ellipse at center top, rgba(50,35,12,0.6), transparent 55%),
+    radial-gradient(ellipse at center, rgba(31,20,9,0.8), var(--dark) 65%);
   position: relative;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
 }
 
-.profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: sepia(0.3) brightness(0.8) contrast(1.1);
-  transition: transform 0.4s ease;
-}
-
-/* Dark radial vignette overlay */
-.profile-vignette {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, transparent 50%, rgba(8, 6, 2, 0.8) 100%);
-  pointer-events: none;
-}
-
-/* Hover: zoom + restore full color */
-.char-card:hover .profile-img {
-  transform: scale(1.1);
-  filter: sepia(0) brightness(1) contrast(1.1);
-}
 
 
-/* ============================================================
-  11. RANK TABLE
-   ============================================================ */
+/* 9. RANK TABLE */
 .rank-container {
   margin: 40px 0;
   overflow-x: auto;
   border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
   background: var(--panel);
-  text-align: left;
+  box-shadow: 0 0 40px rgba(201,168,76,0.04);
 }
 
-.rank-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+.rank-table { width: 100%; border-collapse: collapse; min-width: 520px; }
 
 .rank-table th {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
-  padding: 15px;
-  border-bottom: 2px solid var(--gold);
-  font-size: 12px;
-  letter-spacing: 1px;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  font-size: 11px;
+  letter-spacing: 2px;
+  background: rgba(201,168,76,0.04);
+  text-align: left;
 }
 
-.rank-table td {
-  padding: 20px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  vertical-align: top;
-}
-
+.rank-table tr:hover td { background: rgba(201,168,76,0.02); }
+.rank-table td { padding: 16px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
 .rank-letter {
   font-family: 'Cinzel Decorative', serif;
   color: var(--gold);
-  font-size: 24px;
+  font-size: 22px;
   text-align: center;
-  width: 100px;
-  background: rgba(201, 168, 76, 0.03);
+  width: 70px;
+  background: rgba(201,168,76,0.03);
 }
-
-.rank-desc strong {
-  color: var(--gold);
-  display: block;
-  margin-bottom: 4px;
-}
+.rank-desc strong { color: var(--text); display: block; margin-bottom: 3px; font-style: normal; }
 
 
-/* ============================================================
-  12. POPUP OVERLAY
-   ============================================================ */
-.overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 2, 1, 0.92);
-  z-index: 999;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.overlay.active {
-  display: flex;
-}
-
-
-/* ============================================================
-  13. PANEL SHELL — Border, scroll, close button
-   ============================================================ */
-.panel {
-  width: min(580px, 96vw);
-  max-height: 95vh;
-  overflow-y: auto;
-  background: var(--panel);
-  border: 1px solid var(--gold);
-  padding: 30px 24px 24px;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 16px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: var(--dim);
-}
-
-.close-btn:hover {
-  color: var(--red);
-}
-
-.panel-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 12px 0;
-}
-
-
-/* ============================================================
-  14. PANEL HEADER — Name, Title, Label
-   ============================================================ */
-.panel-label {
-  font-size: 9px;
-  letter-spacing: 4px;
-  color: var(--dim);
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-.panel-name {
-  font-family: 'Cinzel Decorative', serif;
-  color: var(--gold);
-  font-size: 20px;
-  text-align: center;
-  text-shadow: 0 0 12px rgba(201, 168, 76, 0.35);
-}
-
-.panel-title {
-  font-style: italic;
-  color: var(--dim);
-  font-size: 13px;
-  text-align: center;
-  margin-bottom: 14px;
-}
-
-
-/* ============================================================
-  15. INFO ROW — Rank / Level / Law / Hunts cells
-   ============================================================ */
-.info-row {
-  display: flex;
-  flex-wrap: wrap;       /* wraps naturally on narrow screens */
-  justify-content: center;
-  margin-bottom: 14px;
-}
-
-.info-cell {
-  flex: 1 1 60px;
-  min-width: 0;          /* allows flex shrinking past content size */
-  max-width: 120px;
-  text-align: center;
-  border-right: 1px solid var(--border);
-  padding: 6px 8px;
-}
-
-.info-cell:last-child {
-  border-right: none;
-}
-
-.info-label {
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: var(--dim);
-  display: block;
-  margin-bottom: 2px;
-}
-
-.info-value {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 10px;
-  color: var(--gold);
-  word-break: break-word;
-}
-
-/*
-  THE VOW CELL FIX:
-  Previously had min-width:250px (overflow) and border-top (unwanted line).
-  Now: flexible, no fixed min-width, no border-top.
-  The cell stacks naturally on mobile without any rogue borders.
-*/
-.info-cell.vow-cell {
-  flex: 2 1 140px;       /* grows more, starts wider than siblings */
-  max-width: none;
-  min-width: 0;          /* ← was 250px — this was the overflow culprit */
-  border-right: none;
-  /* NO border-top — that was causing the unwanted line */
-}
-
-/* Panel sub-section titles */
-.sec-title {
-  font-size: 9px;
-  letter-spacing: 4px;
-  color: var(--dim);
-  text-align: center;
-  margin: 14px 0 8px;
-}
-
-
-/* ============================================================
-  16. STAT BARS
-   ============================================================ */
-.stat-row {
-  display: grid;
-  grid-template-columns: 100px 1fr 30px;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 7px;
-}
-
-.stat-label {
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: var(--dim);
-  text-align: right;
-}
-
-.stat-bar-bg {
-  height: 5px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-}
-
-.stat-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--dim), var(--gold));
-}
-
-.stat-num {
-  font-size: 10px;
-  color: var(--gold);
-  font-family: 'Cinzel Decorative', serif;
-}
-
-
-/* ============================================================
-  17. ABILITIES GRID & TOOLTIPS
-   ============================================================ */
-.abilities-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin-top: 8px;
-}
-
-.ability {
-  position: relative;
-  padding: 8px 5px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 10px;
-  text-align: center;
-  cursor: default;
-}
-
-.ability:hover {
-  border-color: var(--gold);
-  background: rgba(201, 168, 76, 0.05);
-}
-
-.ability-tooltip {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 6px);
-  width: 190px;
-  background: var(--dark);
-  border: 1px solid var(--gold);
-  padding: 12px 16px;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--text);
-  line-height: 1.5;
-  z-index: 10;
-  text-align: left;
-  pointer-events: none;
-}
-
-.ability:hover .ability-tooltip {
-  display: block;
-}
-
-/* Tooltip horizontal anchoring to prevent edge bleed */
-.ability:nth-child(1) .ability-tooltip,
-.ability:nth-child(2) .ability-tooltip {
-  left: 0;
-  right: auto;
-  transform: translateX(0);
-}
-
-.ability:nth-child(3) .ability-tooltip,
-.ability:nth-child(4) .ability-tooltip {
-  left: auto;
-  right: 0;
-  transform: translateX(0);
-}
-
-
-/* ============================================================
-  18. CHRONICLE BOX
-   ============================================================ */
-.chronicle-box {
-  margin-top: 14px;
-  padding: 10px 12px;
-  border-left: 1px solid var(--gold);
-  background: rgba(255, 255, 255, 0.02);
-  font-style: italic;
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-
-/* ============================================================
-  19. FACTION SECTIONS — Three-faction bestiary layout
-   ============================================================ */
-
-/* Each faction gets its own block with a color theme */
+/* 10. FACTION BLOCKS */
 .faction-block {
-  padding: 60px 20px 40px;
+  padding: 70px 24px 50px;
   border-top: 1px solid var(--border);
   position: relative;
 }
 
-/* Faction header banner */
-.faction-header {
-  max-width: 800px;
-  margin: 0 auto 30px;
-  text-align: center;
-}
+.faction-block.archive-bg  { background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.05),  transparent 55%); }
+.faction-block.inq-bg      { background: radial-gradient(ellipse at 50% 0%, rgba(168,191,204,0.05), transparent 55%); }
+.faction-block.veilborn-bg { background: radial-gradient(ellipse at 50% 0%, rgba(176,48,48,0.07),   transparent 55%); }
 
-.faction-tag {
-  font-size: 9px;
-  letter-spacing: 5px;
-  color: var(--dim);
-  margin-bottom: 6px;
-}
+.faction-header { max-width: 820px; margin: 0 auto 32px; text-align: center; }
+.faction-tag    { font-size: 9px; letter-spacing: 6px; color: var(--dim); margin-bottom: 8px; display: block; }
 
-/* Faction title — colored per faction */
-.faction-title {
+.faction-title  {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 20px;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
+  font-size: 22px; letter-spacing: 3px; margin-bottom: 10px;
+  position: relative; display: inline-block;
 }
-.faction-title.archive  { color: var(--gold); text-shadow: 0 0 20px rgba(201,168,76,0.4); }
-.faction-title.inq      { color: #a8bfcc;     text-shadow: 0 0 20px rgba(168,191,204,0.4); }
-.faction-title.veilborn { color: #b03030;     text-shadow: 0 0 20px rgba(176,48,48,0.4); }
+.faction-title.archive  { color: var(--archive); text-shadow: 0 0 25px rgba(201,168,76,0.45); }
+.faction-title.inq      { color: var(--inq);     text-shadow: 0 0 25px rgba(168,191,204,0.45); }
+.faction-title.veilborn { color: var(--veil);    text-shadow: 0 0 25px rgba(176,48,48,0.45); }
 
-/* Thin colored line under faction title */
-.faction-line {
-  height: 1px;
-  width: 120px;
-  margin: 0 auto 14px;
-}
-.faction-line.archive  { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.faction-line.inq      { background: linear-gradient(90deg, transparent, #a8bfcc, transparent); }
-.faction-line.veilborn { background: linear-gradient(90deg, transparent, #b03030, transparent); }
+.faction-line { height: 1px; width: 140px; margin: 0 auto 14px; }
+.faction-line.archive  { background: linear-gradient(90deg, transparent, var(--archive), transparent); }
+.faction-line.inq      { background: linear-gradient(90deg, transparent, var(--inq),     transparent); }
+.faction-line.veilborn { background: linear-gradient(90deg, transparent, var(--veil),    transparent); }
 
-/* Faction motto */
-.faction-motto {
-  font-style: italic;
-  font-size: 13px;
-  color: var(--dim);
-}
+.faction-motto { font-style: italic; font-size: 13px; color: var(--dim); letter-spacing: 0.5px; }
+.faction-cards { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; max-width: 820px; margin: 0 auto; }
 
-/* Faction card grid */
-.faction-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
 
-/* The new improved card */
+/* 11. BESTIARY CARDS */
 .bcard {
   width: 220px;
   background: var(--panel);
   border: 1px solid var(--border);
   cursor: pointer;
-  position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.bcard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+  position: relative;
 }
 
-/* Top colored accent bar per faction */
-.bcard.archive  { border-top: 2px solid var(--gold); }
-.bcard.inq      { border-top: 2px solid #a8bfcc; }
-.bcard.veilborn { border-top: 2px solid #b03030; }
+.bcard.archive  { border-top: 2px solid var(--archive); }
+.bcard.inq      { border-top: 2px solid var(--inq); }
+.bcard.veilborn { border-top: 2px solid var(--veil); }
 
-/* Card image area */
+.bcard.archive:hover  { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 30px rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.5); }
+.bcard.inq:hover      { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 30px rgba(168,191,204,0.1); border-color: rgba(168,191,204,0.5); }
+.bcard.veilborn:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.7), 0 0 30px rgba(176,48,48,0.15); border-color: rgba(176,48,48,0.5); }
+
 .bcard-img {
-  width: 100%;
-  height: 220px;
-  position: relative;
-  overflow: hidden;
-  background: #0c0a06;
+  width: 100%; height: 230px;
+  position: relative; overflow: hidden;
+  background: #0a0806;
 }
 .bcard-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  filter: sepia(0.3) brightness(0.75) contrast(1.15);
+  transition: transform 0.5s ease, filter 0.5s ease;
   display: block;
-  filter: sepia(0.3) brightness(0.75) contrast(1.1);
-  transition: transform 0.4s ease, filter 0.4s ease;
 }
-.bcard:hover .bcard-img img {
-  transform: scale(1.06);
-  filter: sepia(0) brightness(0.9) contrast(1.1);
+.bcard-img svg {
+  width: 100%; height: 100%;
+  display: block;
+  transition: transform 0.5s ease;
 }
+.bcard:hover .bcard-img img,
+.bcard:hover .bcard-img svg { transform: scale(1.08); }
+.bcard:hover .bcard-img img { filter: sepia(0) brightness(0.9) contrast(1.15); }
 
-/* Gradient fade at bottom of image into card body */
 .bcard-img-fade {
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 60%;
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 65%;
   background: linear-gradient(to top, var(--panel), transparent);
   pointer-events: none;
 }
 
-/* Small faction rank badge in top-right corner of image */
 .bcard-rank {
-  position: absolute;
-  top: 10px; right: 10px;
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 11px;
-  padding: 3px 8px;
-  border: 1px solid;
-  background: rgba(8,6,2,0.8);
+  position: absolute; top: 10px; right: 10px;
+  font-family: 'Cinzel Decorative', serif; font-size: 10px;
+  padding: 3px 9px; border: 1px solid;
+  background: rgba(6,4,2,0.88);
+  letter-spacing: 1px;
+  transition: background 0.3s;
 }
-.bcard.archive  .bcard-rank { color: var(--gold); border-color: var(--gold); }
-.bcard.inq      .bcard-rank { color: #a8bfcc;     border-color: #a8bfcc; }
-.bcard.veilborn .bcard-rank { color: #b03030;     border-color: #b03030; }
+.bcard.archive  .bcard-rank { color: var(--archive); border-color: var(--archive); }
+.bcard.inq      .bcard-rank { color: var(--inq);     border-color: var(--inq); }
+.bcard.veilborn .bcard-rank { color: var(--veil);    border-color: var(--veil); }
 
-/* Card text body */
-.bcard-body {
-  padding: 14px 14px 16px;
-  border-top: 1px solid var(--border);
-}
-.bcard-name {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 11px;
-  color: var(--gold);
-  margin-bottom: 4px;
-}
-.bcard.inq      .bcard-name { color: #a8bfcc; }
-.bcard.veilborn .bcard-name { color: #b03030; }
+.bcard-body { padding: 14px 14px 16px; border-top: 1px solid var(--border); }
+.bcard-name { font-family: 'Cinzel Decorative', serif; font-size: 11px; margin-bottom: 4px; letter-spacing: 1px; }
+.bcard.archive  .bcard-name { color: var(--archive); }
+.bcard.inq      .bcard-name { color: var(--inq); }
+.bcard.veilborn .bcard-name { color: var(--veil); }
+.bcard-title  { font-style: italic; font-size: 11px; color: var(--dim); margin-bottom: 10px; }
+.bcard-flavor { font-size: 12px; color: var(--text); line-height: 1.55; opacity: 0.7; margin-bottom: 12px; }
 
-.bcard-title {
-  font-style: italic;
-  font-size: 11px;
-  color: var(--dim);
-  margin-bottom: 10px;
-}
-
-/* Short flavor text on card */
-.bcard-flavor {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.5;
-  opacity: 0.7;
-  margin-bottom: 12px;
-}
-
-/* "Open Record" button at bottom */
 .bcard-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--dim);
-  border: 1px solid var(--border);
-  padding: 7px 0;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  display: block; width: 100%; text-align: center;
+  font-size: 9px; letter-spacing: 3px; color: var(--dim);
+  border: 1px solid var(--border); padding: 8px 0;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, letter-spacing 0.2s;
+  font-family: 'Cinzel Decorative', serif;
 }
-.bcard:hover .bcard-btn {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(201,168,76,0.05);
-}
-.bcard.inq:hover .bcard-btn {
-  border-color: #a8bfcc;
-  color: #a8bfcc;
-  background: rgba(168,191,204,0.05);
-}
-.bcard.veilborn:hover .bcard-btn {
-  border-color: #b03030;
-  color: #b03030;
-  background: rgba(176,48,48,0.05);
-}
-
-/* Background tint per faction block */
-.faction-block.archive-bg  { background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.04), transparent 60%); }
-.faction-block.inq-bg      { background: radial-gradient(ellipse at 50% 0%, rgba(168,191,204,0.04), transparent 60%); }
-.faction-block.veilborn-bg { background: radial-gradient(ellipse at 50% 0%, rgba(176,48,48,0.05), transparent 60%); }
+.bcard.archive:hover  .bcard-btn { border-color: var(--archive); color: var(--archive); background: rgba(201,168,76,0.05); letter-spacing: 4px; }
+.bcard.inq:hover      .bcard-btn { border-color: var(--inq);     color: var(--inq);     background: rgba(168,191,204,0.05); letter-spacing: 4px; }
+.bcard.veilborn:hover .bcard-btn { border-color: var(--veil);    color: var(--veil);    background: rgba(176,48,48,0.06); letter-spacing: 4px; }
 
 
 /* ============================================================
-  20. MOBILE BREAKPOINTS
+   12. OVERLAY & PANEL SHELL
    ============================================================ */
+.overlay {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.overlay.active { display: flex; }
+
+#status-yuan     { background: rgba(5,3,1,0.94); }
+#status-sean     { background: rgba(3,5,7,0.94); }
+#status-alexander{ background: rgba(3,5,7,0.94); }
+#status-xyron    { background: rgba(7,2,2,0.94); }
+
+.panel {
+  width: min(600px, 96vw);
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  scrollbar-width: thin;
+}
+.panel::-webkit-scrollbar { width: 3px; }
+.panel::-webkit-scrollbar-track { background: transparent; }
+
+.close-btn {
+  position: absolute; top: 12px; right: 14px;
+  font-size: 14px; cursor: pointer;
+  background: none; border: none; z-index: 10;
+  transition: color 0.2s, transform 0.25s;
+  font-family: 'Cinzel Decorative', serif;
+  letter-spacing: 1px;
+}
+.close-btn:hover { transform: rotate(90deg); }
+
+/* Panel inner wrapper */
+.panel-inner { padding: 36px 28px 32px; position: relative; }
+
+/* Banner / Header */
+.panel-banner {
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.panel-banner::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0; left: 10%; width: 80%; height: 1px;
+}
+
+.panel-label { font-size: 8px; letter-spacing: 6px; display: block; margin-bottom: 10px; font-family: 'Cinzel Decorative', serif; }
+.panel-name  { font-family: 'Cinzel Decorative', serif; font-size: 26px; display: block; margin-bottom: 6px; letter-spacing: 2px; }
+.panel-title { font-style: italic; font-size: 13px; color: var(--dim); display: block; letter-spacing: 1px; }
+
+/* Info row */
+.info-row {
+  display: flex; flex-wrap: wrap;
+  justify-content: center;
+  margin: 16px 0;
+  border: 1px solid;
+  border-radius: 1px;
+  overflow: hidden;
+}
+.info-cell {
+  flex: 1 1 60px; min-width: 0;
+  text-align: center;
+  padding: 11px 8px;
+  border-right: 1px solid;
+  transition: background 0.2s;
+}
+.info-cell:last-child { border-right: none; }
+.info-cell.vow-cell { flex: 2 1 140px; max-width: none; }
+.info-label { font-size: 8px; letter-spacing: 2px; color: var(--dim); display: block; margin-bottom: 5px; font-family: 'Cinzel Decorative', serif; }
+.info-value { font-family: 'Cinzel Decorative', serif; font-size: 10px; word-break: break-word; display: block; line-height: 1.4; }
+
+/* Section title with ruled lines */
+.sec-title {
+  font-size: 8px; letter-spacing: 5px;
+  color: var(--dim); text-align: center;
+  margin: 18px 0 12px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Cinzel Decorative', serif;
+  white-space: nowrap;
+}
+.sec-title::before, .sec-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* Stat bars */
+.stat-row {
+  display: grid;
+  grid-template-columns: 115px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+.stat-label { font-size: 8px; letter-spacing: 1.5px; color: var(--dim); text-align: right; font-family: 'Cinzel Decorative', serif; }
+.stat-bar-bg {
+  height: 4px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 2px; overflow: hidden;
+}
+.stat-bar-fill { height: 100%; border-radius: 2px; }
+.stat-num { font-size: 10px; font-family: 'Cinzel Decorative', serif; }
+
+/* Abilities */
+.abilities-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px; margin-top: 8px;
+}
+.ability {
+  position: relative;
+  padding: 10px 5px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  font-size: 10px; text-align: center;
+  cursor: default;
+  transition: border-color 0.2s, background 0.2s;
+  line-height: 1.4;
+}
+.ability-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  width: 200px;
+  background: #0a0806;
+  border: 1px solid;
+  padding: 12px 14px;
+  font-size: 12px; font-style: italic;
+  color: var(--text); line-height: 1.6;
+  z-index: 20; text-align: left;
+  pointer-events: none;
+}
+.ability:hover .ability-tooltip { display: block; }
+.ability:nth-child(1) .ability-tooltip,
+.ability:nth-child(2) .ability-tooltip { left: 0; }
+.ability:nth-child(3) .ability-tooltip,
+.ability:nth-child(4) .ability-tooltip { right: 0; }
+
+/* Chronicle */
+.chronicle-box {
+  margin-top: 20px;
+  padding: 16px 18px;
+  font-style: italic; font-size: 12.5px;
+  line-height: 1.85; color: var(--text);
+  border-left: 2px solid;
+  background: rgba(255,255,255,0.012);
+  position: relative;
+}
+
+.panel-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+
+/* ============================================================
+   FACTION PANEL THEMES
+   ============================================================ */
+
+/* ARCHIVE — Yuan — Gold / Starlight */
+#status-yuan .panel {
+  background: linear-gradient(165deg, #0e0b06 0%, #0a0803 100%);
+  border: 1px solid rgba(201,168,76,0.45);
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.06),
+    0 0 80px rgba(201,168,76,0.1),
+    inset 0 0 100px rgba(201,168,76,0.025);
+}
+#status-yuan .panel::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.25); }
+#status-yuan .panel-inner {
+  background:
+    radial-gradient(ellipse at 50% -5%, rgba(201,168,76,0.08) 0%, transparent 50%);
+}
+#status-yuan .panel-banner::after { background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent); }
+#status-yuan .panel-label  { color: rgba(201,168,76,0.45); }
+#status-yuan .panel-name   { color: var(--archive); text-shadow: 0 0 25px rgba(201,168,76,0.5), 0 0 70px rgba(201,168,76,0.18); }
+#status-yuan .info-row     { border-color: rgba(201,168,76,0.18); background: rgba(201,168,76,0.015); }
+#status-yuan .info-cell    { border-right-color: rgba(201,168,76,0.18); }
+#status-yuan .info-value   { color: var(--archive); }
+#status-yuan .stat-bar-fill{ background: linear-gradient(90deg, rgba(100,75,20,0.5), var(--archive)); }
+#status-yuan .stat-num     { color: var(--archive); }
+#status-yuan .ability:hover{ border-color: rgba(201,168,76,0.55); background: rgba(201,168,76,0.06); }
+#status-yuan .ability-tooltip { border-color: rgba(201,168,76,0.3); }
+#status-yuan .chronicle-box{ border-left-color: rgba(201,168,76,0.5); }
+#status-yuan .close-btn    { color: var(--dim); }
+#status-yuan .close-btn:hover { color: var(--archive); }
+#status-yuan .sec-title::before,
+#status-yuan .sec-title::after { background: rgba(201,168,76,0.18); }
+
+
+/* INQUISITION — Sean & Alexander — Steel / Iron Blue */
+#status-sean .panel,
+#status-alexander .panel {
+  background: linear-gradient(165deg, #080d12 0%, #060a0e 100%);
+  border: 1px solid rgba(168,191,204,0.4);
+  box-shadow:
+    0 0 0 1px rgba(168,191,204,0.05),
+    0 0 80px rgba(168,191,204,0.08),
+    inset 0 0 100px rgba(60,90,110,0.04);
+}
+#status-sean .panel::-webkit-scrollbar-thumb,
+#status-alexander .panel::-webkit-scrollbar-thumb { background: rgba(168,191,204,0.25); }
+#status-sean .panel-inner,
+#status-alexander .panel-inner {
+  background:
+    radial-gradient(ellipse at 50% -5%, rgba(168,191,204,0.07) 0%, transparent 50%);
+}
+#status-sean .panel-banner::after,
+#status-alexander .panel-banner::after { background: linear-gradient(90deg, transparent, rgba(168,191,204,0.45), transparent); }
+#status-sean .panel-label,
+#status-alexander .panel-label { color: rgba(168,191,204,0.45); }
+#status-sean .panel-name,
+#status-alexander .panel-name  { color: var(--inq); text-shadow: 0 0 25px rgba(168,191,204,0.4), 0 0 70px rgba(100,140,165,0.15); }
+#status-sean .info-row,
+#status-alexander .info-row    { border-color: rgba(168,191,204,0.18); background: rgba(168,191,204,0.015); }
+#status-sean .info-cell,
+#status-alexander .info-cell   { border-right-color: rgba(168,191,204,0.18); }
+#status-sean .info-value,
+#status-alexander .info-value  { color: var(--inq); }
+#status-sean .stat-bar-fill,
+#status-alexander .stat-bar-fill { background: linear-gradient(90deg, rgba(50,70,90,0.6), var(--inq)); }
+#status-sean .stat-num,
+#status-alexander .stat-num    { color: var(--inq); }
+#status-sean .ability:hover,
+#status-alexander .ability:hover { border-color: rgba(168,191,204,0.55); background: rgba(168,191,204,0.06); }
+#status-sean .ability-tooltip,
+#status-alexander .ability-tooltip { border-color: rgba(168,191,204,0.28); }
+#status-sean .chronicle-box,
+#status-alexander .chronicle-box { border-left-color: rgba(168,191,204,0.45); }
+#status-sean .close-btn,
+#status-alexander .close-btn   { color: var(--dim); }
+#status-sean .close-btn:hover,
+#status-alexander .close-btn:hover { color: var(--inq); }
+#status-sean .sec-title::before, #status-sean .sec-title::after,
+#status-alexander .sec-title::before, #status-alexander .sec-title::after { background: rgba(168,191,204,0.18); }
+
+
+/* VEILBORN — Xyron — Deep Crimson / Corruption */
+#status-xyron .panel {
+  background: linear-gradient(165deg, #0c0606 0%, #080404 100%);
+  border: 1px solid rgba(176,48,48,0.45);
+  box-shadow:
+    0 0 0 1px rgba(176,48,48,0.07),
+    0 0 80px rgba(176,48,48,0.12),
+    inset 0 0 100px rgba(80,10,10,0.05);
+}
+#status-xyron .panel::-webkit-scrollbar-thumb { background: rgba(176,48,48,0.3); }
+#status-xyron .panel-inner {
+  background:
+    radial-gradient(ellipse at 50% -5%, rgba(176,48,48,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(120,20,20,0.06) 0%, transparent 40%);
+}
+#status-xyron .panel-banner::after { background: linear-gradient(90deg, transparent, rgba(176,48,48,0.55), transparent); }
+#status-xyron .panel-label  { color: rgba(176,48,48,0.55); }
+#status-xyron .panel-name   { color: var(--veil); text-shadow: 0 0 25px rgba(176,48,48,0.6), 0 0 70px rgba(120,20,20,0.25); }
+#status-xyron .info-row     { border-color: rgba(176,48,48,0.2); background: rgba(176,48,48,0.018); }
+#status-xyron .info-cell    { border-right-color: rgba(176,48,48,0.2); }
+#status-xyron .info-value   { color: var(--veil); }
+#status-xyron .stat-bar-fill{ background: linear-gradient(90deg, rgba(60,8,8,0.7), var(--veil)); }
+#status-xyron .stat-num     { color: var(--veil); }
+#status-xyron .ability:hover{ border-color: rgba(176,48,48,0.55); background: rgba(176,48,48,0.08); }
+#status-xyron .ability-tooltip { border-color: rgba(176,48,48,0.32); }
+#status-xyron .chronicle-box{ border-left-color: rgba(176,48,48,0.55); }
+#status-xyron .close-btn    { color: var(--dim); }
+#status-xyron .close-btn:hover { color: var(--veil); }
+#status-xyron .sec-title::before,
+#status-xyron .sec-title::after { background: rgba(176,48,48,0.22); }
+
+
+/* ============================================================
+   ATTUNEMENT SYSTEM
+   ============================================================ */
+.attunement-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 80px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.att-label {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-align: right;
+  font-family: 'Cinzel Decorative', serif;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+/* The small coloured dot before the attunement name */
+.att-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.att-bar-bg {
+  height: 5px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.att-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+/* Right side: number + tier label */
+.att-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.att-num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 10px;
+}
+
+.att-tier {
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: var(--dim);
+  font-family: 'Cinzel Decorative', serif;
+}
+
+/* Attunement element colours */
+.att-gravitic .att-dot  { background: #9b6fff; }
+.att-gravitic .att-bar-fill { background: linear-gradient(90deg, #3a1a6a, #9b6fff); }
+.att-gravitic .att-num  { color: #9b6fff; }
+
+.att-void .att-dot  { background: #c0c8e8; }
+.att-void .att-bar-fill { background: linear-gradient(90deg, #1a1e38, #c0c8e8); }
+.att-void .att-num  { color: #c0c8e8; }
+
+.att-stellar .att-dot  { background: #fff4a0; }
+.att-stellar .att-bar-fill { background: linear-gradient(90deg, #3a3010, #fff4a0); }
+.att-stellar .att-num  { color: #fff4a0; }
+
+.att-pyre .att-dot  { background: #a8bfcc; }
+.att-pyre .att-bar-fill { background: linear-gradient(90deg, #1a3040, #a8bfcc); }
+.att-pyre .att-num  { color: #a8bfcc; }
+
+.att-iron .att-dot  { background: #7a9aaa; }
+.att-iron .att-bar-fill { background: linear-gradient(90deg, #1a2530, #7a9aaa); }
+.att-iron .att-num  { color: #7a9aaa; }
+
+.att-entropy .att-dot  { background: #cc3333; }
+.att-entropy .att-bar-fill { background: linear-gradient(90deg, #3a0808, #cc3333); }
+.att-entropy .att-num  { color: #cc3333; }
+
+.att-shadow .att-dot  { background: #884466; }
+.att-shadow .att-bar-fill { background: linear-gradient(90deg, #1a0812, #884466); }
+.att-shadow .att-num  { color: #884466; }
+
+.att-resonance .att-dot  { background: #c9a84c; }
+.att-resonance .att-bar-fill { background: linear-gradient(90deg, #3a2a0a, #c9a84c); }
+.att-resonance .att-num  { color: #c9a84c; }
+
+/* Mobile: shrink label column */
 @media (max-width: 540px) {
+  .attunement-row {
+    grid-template-columns: 80px 1fr 68px;
+  }
+  .att-label { font-size: 7px; letter-spacing: 1px; }
+  .att-tier  { font-size: 6px; }
+}
 
-  /* Nav links tighter */
-  nav a {
-    margin: 0 10px;
-    font-size: 9px;
+
+/* Mystery / sealed card (Alexander) */
+.mystery-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #07080d;
+}
+.mystery-marks {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 56px;
+  color: rgba(168,191,204,0.12);
+  letter-spacing: 10px;
+  line-height: 1;
+  display: block;
+  text-align: center;
+}
+.mystery-label {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: rgba(168,191,204,0.18);
+  text-align: center;
+  margin-top: 10px;
+  display: block;
+  font-family: 'Cinzel Decorative', serif;
+}
+.mystery-sublabel {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(168,191,204,0.1);
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+
+/* ============================================================
+   13. MOBILE — Manhwa reading experience
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  body { font-size: 17px; }
+
+  .lore-illustration {
+    /* Full bleed — no side borders, extends to screen edge */
+    margin-left:  -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
+    border-left:  none;
+    border-right: none;
   }
 
-  /* Abilities: 2×2 grid */
-  .abilities-row {
-    grid-template-columns: repeat(2, 1fr);
+  .main-title  { font-size: 28px; letter-spacing: 1px; }
+  .subtitle    { font-size: 13px; }
+
+  nav a { margin: 0 12px; font-size: 9px; }
+}
+
+/* Mobile phones */
+@media (max-width: 540px) {
+  body { font-size: 16px; line-height: 1.85; }
+
+  section { padding: 90px 16px 50px; }
+
+  .lore-illustration {
+    margin-left:  -16px;
+    margin-right: -16px;
+    width: calc(100% + 32px);
+    border-top-width: 3px;
   }
 
-  /* Stat bar label narrower */
-  .stat-row {
-    grid-template-columns: 80px 1fr 26px;
+  /* Make captions larger and readable */
+  .lore-illustration figcaption {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 10px 14px;
   }
 
-  /*
-    INFO ROW — full column stack on small screens.
-    Each cell gets a bottom border; right borders are removed.
-    The vow cell resets to a normal full-width row item.
-  */
-  .info-row {
-    flex-direction: column;
-    align-items: stretch;
+  .main-title  { font-size: 24px; }
+  .subtitle    { font-size: 12px; }
+  .drop-cap::first-letter { font-size: 4.2em; }
+
+  .lore-box {
+    font-size: 15px;
+    line-height: 1.9;
+    padding: 14px 16px 14px 20px;
+    margin: 16px 0;
   }
 
+  nav a { margin: 0 8px; font-size: 8px; letter-spacing: 2px; }
+
+  .abilities-row { grid-template-columns: repeat(2, 1fr); }
+  .stat-row      { grid-template-columns: 90px 1fr 28px; }
+
+  /* Info row stacks vertically on phone */
+  .info-row { flex-direction: column; }
   .info-cell {
     max-width: 100%;
-    
-    border-bottom: 1px solid var(--border);
-    padding: 8px 12px;
-    text-align: left;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 9px 14px; text-align: left;
+    display: flex; justify-content: space-between; align-items: center;
   }
+  .info-cell:last-child { border-bottom: none; }
+  .info-cell.vow-cell { flex: none; width: 100%; }
+  .info-label { margin-bottom: 0; }
 
-  .info-cell:last-child {
-    border-bottom: none;
-  }
+  .bcard { width: 90%; max-width: 320px; }
 
-  /* Vow cell: behaves like any other stacked cell */
-  .info-cell.vow-cell {
-    flex: none;
+  /* Panel nearly full screen on mobile */
+  .panel {
     width: 100%;
-    
+    max-height: 94vh;
   }
+  .panel-inner { padding: 28px 18px 24px; }
+  .panel-name  { font-size: 20px; }
 
-  /* Faction cards: slightly narrower on small screens */
-  .bcard {
-    width: 90%;
-    max-width: 300px;
-  }
-}
-/* ============================================================
-       ADDITIONAL FACTION-THEMED PANEL STYLES
-       ============================================================ */
-    /* Yuan — Archive (Gold) */
-    #status-yuan .panel {
-      border-color: #c9a84c;
-    }
-    #status-yuan .panel-name,
-    #status-yuan .info-value,
-    #status-yuan .stat-num,
-    #status-yuan .bcard-rank {
-      color: #c9a84c;
-    }
-    #status-yuan .ability:hover {
-      border-color: #c9a84c;
-      background: rgba(201,168,76,0.08);
-    }
-    #status-yuan .close-btn:hover { color: #c9a84c; }
+  /* Faction cards single column */
+  .faction-cards { gap: 20px; }
 
-    /* Sean — Inquisition (Silver-Blue) */
-    #status-sean .panel {
-      border-color: #a8bfcc;
-    }
-    #status-sean .panel-name,
-    #status-sean .info-value,
-    #status-sean .stat-num,
-    #status-sean .bcard-rank {
-      color: #a8bfcc;
-    }
-    #status-sean .ability:hover {
-      border-color: #a8bfcc;
-      background: rgba(168,191,204,0.08);
-    }
-    #status-sean .close-btn:hover { color: #a8bfcc; }
+  .rank-table th,
+  .rank-table td { padding: 10px 8px; font-size: 12px; }
 
-    /* Xyron — Veilborn (Dark Red) */
-    #status-xyron .panel {
-      border-color: #b03030;
-    }
-    #status-xyron .panel-name,
-    #status-xyron .info-value,
-    #status-xyron .stat-num,
-    #status-xyron .bcard-rank {
-      color: #b03030;
-    }
-    #status-xyron .ability:hover {
-      border-color: #b03030;
-      background: rgba(176,48,48,0.08);
-    }
-    #status-xyron .close-btn:hover { color: #b03030; }
-    .info-cell.vow-cell {
-  border-right: 1px solid var(--border) !important; /* ensures the | line always appears */
+  /* Stat label narrower */
+  .stat-label { font-size: 7px; letter-spacing: 0.5px; }
 }
-/* ============================================================
-       ADDITIONAL FACTION-THEMED PANEL STYLES + STAT BARS + BORDERS
-       ============================================================ */
-
-/* Yuan — Archive (Gold) */
-#status-yuan .panel {
-  border-color: #c9a84c;
-}
-#status-yuan .panel-name,
-#status-yuan .info-value,
-#status-yuan .stat-num,
-#status-yuan .bcard-rank {
-  color: #c9a84c;
-}
-#status-yuan .ability:hover {
-  border-color: #c9a84c;
-  background: rgba(201,168,76,0.08);
-}
-#status-yuan .close-btn:hover { color: #c9a84c; }
-
-/* Sean — Inquisition (Silver-Blue) */
-#status-sean .panel {
-  border-color: #a8bfcc;
-}
-#status-sean .panel-name,
-#status-sean .info-value,
-#status-sean .stat-num,
-#status-sean .bcard-rank {
-  color: #a8bfcc;
-}
-#status-sean .ability:hover {
-  border-color: #a8bfcc;
-  background: rgba(168,191,204,0.08);
-}
-#status-sean .close-btn:hover { color: #a8bfcc; }
-
-/* Xyron — Veilborn (Dark Red) */
-#status-xyron .panel {
-  border-color: #b03030;
-}
-#status-xyron .panel-name,
-#status-xyron .info-value,
-#status-xyron .stat-num,
-#status-xyron .bcard-rank {
-  color: #b03030;
-}
-#status-xyron .ability:hover {
-  border-color: #b03030;
-  background: rgba(176,48,48,0.08);
-}
-#status-xyron .close-btn:hover { color: #b03030; }
-
-/* ============================================================
-   FACTION-THEMED STAT BAR FILLS (exactly what you asked for)
-   ============================================================ */
-#status-yuan .stat-bar-fill {
-  background: linear-gradient(90deg, #6a5a40, #c9a84c);
-}
-#status-sean .stat-bar-fill {
-  background: linear-gradient(90deg, #6a5a40, #a8bfcc);
-}
-#status-xyron .stat-bar-fill {
-  background: linear-gradient(90deg, #6a5a40, #b03030);
-}
-
-/* Stronger faction-colored borders everywhere */
-.info-cell {
-  border-right: 1px solid var(--border);
-}
-#status-yuan .info-cell { border-right-color: #c9a84c; }
-#status-sean .info-cell { border-right-color: #a8bfcc; }
-#status-xyron .info-cell { border-right-color: #b03030; }
-
-.info-cell.vow-cell {
-  border-right: 1px solid var(--border) !important; /* vertical | line always visible */
-}
-#status-yuan .info-cell.vow-cell { border-right-color: #c9a84c !important; }
-#status-sean .info-cell.vow-cell { border-right-color: #a8bfcc !important; }
-#status-xyron .info-cell.vow-cell { border-right-color: #b03030 !important; }
