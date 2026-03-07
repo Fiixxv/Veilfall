@@ -315,7 +315,6 @@ p { margin-bottom: 16px; }
   image-rendering: auto;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0);
-  transform-style: preserve-3d;
   transition: transform 0.5s ease;
   display: block;
   filter: brightness(1.0) contrast(1.06);
@@ -430,7 +429,7 @@ p { margin-bottom: 16px; }
 .info-cell {
   flex: 1 1 60px; min-width: 0;
   text-align: center;
-  padding: 11px 8px;
+  padding: 13px 10px;
   border-right: 1px solid var(--border);
   transition: background 0.2s;
 }
