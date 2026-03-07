@@ -312,11 +312,15 @@ p { margin-bottom: 16px; }
 .bcard-img img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: top center;
-  filter: brightness(0.88) contrast(1.08);
-  transition: transform 0.5s ease, filter 0.4s ease;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
   display: block;
+  filter: brightness(1.0) contrast(1.06);
 }
-.bcard:hover .bcard-img img { transform: scale(1.08); filter: brightness(1.0) contrast(1.06); }
+.bcard:hover .bcard-img img { transform: scale(1.08); }
 
 .bcard-img svg { width: 100%; height: 100%; display: block; transition: transform 0.5s ease; }
 .bcard:hover .bcard-img svg { transform: scale(1.08); }
@@ -1182,4 +1186,7 @@ p { margin-bottom: 16px; }
   #status-sean .panel-banner::before,
   #status-alexander .panel-banner::before,
   #status-xyron .panel-banner::before { font-size: 22px; }
+}
+img {
+  image-rendering: pixelated;
 }
