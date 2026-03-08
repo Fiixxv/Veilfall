@@ -12,19 +12,6 @@
       .panel { max-width: 920px !important; width: 92vw !important; }
       .panel-inner { padding: 32px 44px !important; }
     }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin-bottom: 4px; }
-    .stat-grid .stat-label { font-size: 8.5px; }
-    .class-tree { display: flex; align-items: center; gap: 7px; margin: 8px 0 16px; flex-wrap: wrap; padding: 9px 0 12px; border-bottom: 1px solid rgba(120,90,50,0.18); }
-    .class-node { padding: 3px 11px; font-size: 7.5px; letter-spacing: 1.6px; font-family: 'Cinzel Decorative', serif; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; }
-    .class-node.base { color: #5a4a38; border-color: #342a1e; }
-    .class-node.branch { color: #8a7050; border-color: #504030; }
-    .class-node.current { color: #d0a870; border-color: #907040; background: rgba(150,110,55,0.13); letter-spacing: 1.8px; }
-    .class-arrow { color: #4a3820; font-size: 12px; line-height: 1; }
-    .passive-row { display: flex; flex-direction: column; gap: 9px; margin: 5px 0 16px; }
-    .passive-item { padding: 10px 14px; background: rgba(255,255,255,0.016); border-left: 2px solid #4a3520; border-bottom: 1px solid rgba(80,60,30,0.15); }
-    .passive-name { display: block; font-size: 8px; letter-spacing: 1.8px; color: #9a8060; font-family: 'Cinzel Decorative', serif; margin-bottom: 5px; }
-    .passive-desc { display: block; font-size: 11.5px; color: var(--dim); line-height: 1.68; font-style: italic; }
-    .abilities-row + .abilities-row { margin-top: 7px; }
   </style>
 </head>
 <body>
@@ -155,7 +142,6 @@
 
       <p class="drop-cap">The Iron Inquisition was not founded as a counterweight to the Archive. It was founded as a correction. Their central thesis is methodological: every Eidolon is a catastrophe in slow motion, and the Archive is a machine for producing them at scale. When the Resonance Debt collects — when an Eidolon activates a Vow and the Law exacts its price — the shed fragments are not neutral residue. They are sin-adjacent emissions: fractured pieces of human identity, stripped of context, radiating the same spiritual pollution that filled the original ledger. The Veilborn consume this. In the Inquisition's accounting, every Rank-S Eidolon is a hunter who kills Veilborn with one hand and fuels them with the other — buying tactical victories while slowly rewriting the conditions of the next Veilfall.</p>
       <p>The Inquisition hunts the Awakened not from ideology but from arithmetic. They have done the math and found it does not balance. Their own approach to power was designed in deliberate opposition to everything the Archive represents.</p>
-
       <p>Where the Archive submits to the Monolith, the Inquisition confronts it. Where the Eidolon accepts the Law's terms, the Tethered <em>refuse</em> them — and force something else out instead.</p>
 
       <div class="lore-box">
@@ -191,7 +177,7 @@
       <div class="divider">✦ ✦ ✦</div>
 
       <figure class="lore-illustration">
-        <img src="images/L7.webp">
+        <img src="images/L7.jpg">
         <figcaption>Three answers to a broken world — the Archive hunts Veilborn, the Inquisition hunts the Archive, and the Veilborn hunts them all</figcaption>
       </figure>
 
@@ -272,8 +258,6 @@
 
       <hr class="panel-divider" style="margin: 40px 0 50px;">
 
-
-      <!-- ═══ INCIDENT FILE #0047 ═══ -->
       <h2 class="subtitle">Incident File #0047 — The Unmarked Candidate</h2>
       <div class="divider">✦ ✦ ✦</div>
       <p style="font-size:13px; color:var(--dim); font-style:italic; text-align:center; margin-bottom:32px; letter-spacing:0.5px;">
@@ -295,8 +279,6 @@
 
       <hr class="panel-divider" style="margin: 50px 0;">
 
-
-      <!-- ═══ CROSS-FACTION CORRESPONDENCE ═══ -->
       <h2 class="subtitle">Classified Correspondence — The Wren Demand</h2>
       <div class="divider">✦ ✦ ✦</div>
       <p style="font-size:13px; color:var(--dim); font-style:italic; text-align:center; margin-bottom:32px; letter-spacing:0.5px;">
@@ -323,8 +305,6 @@
 
       <hr class="panel-divider" style="margin: 50px 0;">
 
-
-      <!-- ═══ THEORETICAL DOCUMENT ═══ -->
       <h2 class="subtitle">Theoretical Document — The Convergence Theorem</h2>
       <div class="divider">✦ ✦ ✦</div>
       <p style="font-size:13px; color:var(--dim); font-style:italic; text-align:center; margin-bottom:32px; letter-spacing:0.5px;">
@@ -345,8 +325,6 @@
 
       <hr class="panel-divider" style="margin: 50px 0;">
 
-
-      <!-- ═══ FIELD NOTES ═══ -->
       <h2 class="subtitle">Field Notes — Entity Designation: "The Still One"</h2>
       <div class="divider">✦ ✦ ✦</div>
       <p style="font-size:13px; color:var(--dim); font-style:italic; text-align:center; margin-bottom:32px; letter-spacing:0.5px;">
@@ -369,8 +347,6 @@
 
       <hr class="panel-divider" style="margin: 50px 0;">
 
-
-      <!-- ═══ DUAL REGISTRY ═══ -->
       <h2 class="subtitle">The Dual Registry — Debt &amp; Toll</h2>
       <div class="divider">✦ ✦ ✦</div>
       <p style="font-size:13px; color:var(--dim); font-style:italic; text-align:center; margin-bottom:32px; letter-spacing:0.5px;">
@@ -466,7 +442,6 @@
       </p>
     </div>
     <div class="faction-cards">
-
       <div class="bcard inq" onclick="document.getElementById('status-sean').classList.add('active')">
         <div class="bcard-img">
           <img src="images/SEAN.jpg" alt="Sean">
@@ -494,7 +469,6 @@
           <span class="bcard-btn">[ OPEN RECORD ]</span>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -541,6 +515,7 @@
           <span class="panel-name">Yuan</span>
           <span class="panel-title">"The Alpha Centauri"</span>
         </div>
+        <div class="sec-title">CLASS PATH</div>
         <div class="class-tree">
           <div class="class-node base">MAGE</div>
           <span class="class-arrow">›</span>
@@ -622,7 +597,7 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       SEAN OVERLAY — THE LUNAR BASTION
+       SEAN OVERLAY
   ════════════════════════════════════════════════════════ -->
   <div id="status-sean" class="overlay" onclick="if(event.target===this)this.classList.remove('active')">
     <div class="panel">
@@ -633,6 +608,7 @@
           <span class="panel-name">Sean</span>
           <span class="panel-title">"The Lunar Bastion"</span>
         </div>
+        <div class="sec-title">CLASS PATH</div>
         <div class="class-tree">
           <div class="class-node base">SENTINEL</div>
           <span class="class-arrow">›</span>
@@ -709,7 +685,7 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       ALEXANDER OVERLAY — THE ECLIPSE SOVEREIGN
+       ALEXANDER OVERLAY
   ════════════════════════════════════════════════════════ -->
   <div id="status-alexander" class="overlay" onclick="if(event.target===this)this.classList.remove('active')">
     <div class="panel">
@@ -720,6 +696,7 @@
           <span class="panel-name">Alexander</span>
           <span class="panel-title">"The Eclipse Sovereign"</span>
         </div>
+        <div class="sec-title">CLASS PATH</div>
         <div class="class-tree">
           <div class="class-node base">MAGE</div>
           <span class="class-arrow">›</span>
@@ -796,7 +773,7 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       XYRON OVERLAY — BETRAYAL OF FEAR
+       XYRON OVERLAY
   ════════════════════════════════════════════════════════ -->
   <div id="status-xyron" class="overlay" onclick="if(event.target===this)this.classList.remove('active')">
     <div class="panel">
@@ -807,6 +784,7 @@
           <span class="panel-name">Xyron</span>
           <span class="panel-title">"Betrayal Of Fear"</span>
         </div>
+        <div class="sec-title">CLASS PATH</div>
         <div class="class-tree">
           <div class="class-node base">SPELLBLADE</div>
           <span class="class-arrow">›</span>
@@ -848,22 +826,22 @@
             <div style="width:100%; height:3px; background:#8b3a3a; border-radius:2px;"></div>
             <span style="font-size:7.5px; letter-spacing:0.8px; color:#8b7355; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3;">III<br>ENVY</span>
           </div>
-          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; position:relative;">
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; opacity:0.35;">
+            <div style="width:100%; height:3px; background:#8b3a3a; border-radius:2px;"></div>
+            <span style="font-size:7.5px; letter-spacing:0.8px; color:#8b7355; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3;">IV<br>GLUTTONY</span>
+          </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; position:relative;">
             <div style="width:100%; height:3px; background:#c8271a; border-radius:2px; box-shadow: 0 0 6px #c8271a88;"></div>
-            <span style="font-size:7.5px; letter-spacing:0.8px; color:#e8a87a; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3; font-weight:700;">IV<br>GLUTTONY</span>
+            <span style="font-size:7.5px; letter-spacing:0.8px; color:#e8a87a; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3; font-weight:700;">V<br>SLOTH</span>
             <span style="position:absolute; top:-7px; font-size:8px; color:#c8271a;">▲</span>
           </div>
-          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; opacity:0.18;">
-            <div style="width:100%; height:3px; background:#4a2020; border-radius:2px;"></div>
-            <span style="font-size:7.5px; letter-spacing:0.8px; color:#5a4535; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3;">V<br>SLOTH</span>
-          </div>
-          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; opacity:0.18;">
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; opacity:0.25;">
             <div style="width:100%; height:3px; background:#4a2020; border-radius:2px;"></div>
             <span style="font-size:7.5px; letter-spacing:0.8px; color:#5a4535; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3;">VI<br>LUST</span>
           </div>
-          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; opacity:0.12;">
-            <div style="width:100%; height:3px; background:#2a1010; border-radius:2px;"></div>
-            <span style="font-size:7.5px; letter-spacing:0.8px; color:#3a2525; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3;">VII<br>GREED</span>
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; opacity:0.25;">
+            <div style="width:100%; height:3px; background:#4a2020; border-radius:2px;"></div>
+            <span style="font-size:7.5px; letter-spacing:0.8px; color:#5a4535; font-family:'Cinzel Decorative', serif; text-align:center; line-height:1.3;">VII<br>GREED</span>
           </div>
         </div>
         <div class="sec-title">ATTUNEMENT</div>
